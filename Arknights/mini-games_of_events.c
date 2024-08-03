@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 
-#define RL 35
+#define RL 35										//éƒ¨åˆ†ä¼Šçº³çš„åˆ†æ•°
 #define RX 85
 #define GS 5
 #define GM 50
@@ -20,15 +20,15 @@ void r_x(double materials[], int buff[])
 void g_s(double materials[])
 {
 	materials[4] = materials[3];
-	materials[7] = materials[7] + materials[3] * 1;								//¶îÍâ²ú³ö 1 ±¶É³ÒÁÄÉ
-	materials[7] = ceil(materials[7]);											//ÏòÉÏÈ¡Õû
+	materials[7] = materials[7] + materials[3] * 1;					//é¢å¤–äº§å‡º 1 å€æ²™ä¼Šçº³
+	materials[7] = ceil(materials[7]);						//å‘ä¸Šå–æ•´
 	materials[4] = ceil(materials[4]);
 	materials[3] = 0;
 }
 void g_m(double materials[])
 {
 	materials[5] = materials[4] * 4 / 5;
-	materials[7] = materials[4] / 5 + materials[4] * 1.6 + materials[7];		//¶îÍâ²ú³ö 1.6 ±¶É³ÒÁÄÉ
+	materials[7] = materials[4] / 5 + materials[4] * 1.6 + materials[7];		//é¢å¤–äº§å‡º 1.6å€æ²™ä¼Šçº³
 	materials[7] = ceil(materials[7]);
 	materials[5] = ceil(materials[5]);
 	materials[4] = 0;
@@ -36,14 +36,14 @@ void g_m(double materials[])
 void g_l(double materials[])
 {
 	materials[6] = materials[5] * 7 / 10;
-	materials[7] = materials[5] * 3 / 10 + materials[5] * 1.4 + materials[7];	//¶îÍâ²ú³ö 1.4 ±¶É³ÒÁÄÉ
+	materials[7] = materials[5] * 3 / 10 + materials[5] * 1.4 + materials[7];	//é¢å¤–äº§å‡º 1.4å€æ²™ä¼Šçº³
 	materials[7] = ceil(materials[7]);
 	materials[6] = ceil(materials[6]);
 	materials[5] = 0;
 }
 void y_s(double materials[])
 {
-	materials[7] = ceil(materials[7]);											//ÏòÉÏÈ¡Õû
+	materials[7] = ceil(materials[7]);
 	materials[7] = materials[7] * 5;
 }
 void y_m(double materials[])
@@ -60,7 +60,7 @@ void y_l(double materials[], int buff[])
 void z_s(double materials[], int buff[])
 {
 	materials[9] = (materials[8] + materials[7]) / 2;
-	materials[9] = ceil(materials[9]);											//ÏòÉÏÈ¡Õû
+	materials[9] = ceil(materials[9]);
 	materials[7] = 0;
 	materials[8] = 0;
 	buff[1] = 1;
@@ -120,10 +120,10 @@ void jiagong(int x, int* p_unused_console, double materials[], int buff[], int j
 		z_l(materials, buff);
 		break;
 	case 11:
-		printf("Î´½âËøµÚ%d¸ö²Ù×÷Ì¨\n", j + 1);
+		printf("æœªè§£é”ç¬¬%dä¸ªæ“ä½œå°\n", j + 1);
 		break;
 	default:
-		printf("µÚ%d¸ö²Ù×÷Ì¨ÊäÈëÁËÎŞĞ§µÄ¼Ó¹¤¹¤ÒÕ\n", j + 1);
+		printf("ç¬¬%dä¸ªæ“ä½œå°è¾“å…¥äº†æ— æ•ˆçš„åŠ å·¥å·¥è‰º\n", j + 1);
 		break;
 	}
 }
@@ -148,9 +148,7 @@ int score(double materials[], int buff[], int* p_unused_console)
 				break;
 			case 3:
 				if (materials[2] + materials[3] + materials[4] + materials[5] + materials[6] + materials[8] + materials[9] + materials[7] == 0)
-				{
 					total = total + materials[11] * 100;
-				}
 				break;
 			case 4:
 				total = total + materials[7];
@@ -170,7 +168,7 @@ int main(void)
 	int a[6] = { 0,0,0,0,0,0 };
 	int* ap = a;
 	do {
-		printf("ÇëÊäÈëÏÖÔÚµÄÔ¤¹À·ÖÊı:");
+		printf("è¯·è¾“å…¥ç°åœ¨çš„é¢„ä¼°åˆ†æ•°:");
 		scanf_s("%d", &sc);
 	} while (0);
 	while (1)
@@ -182,16 +180,16 @@ int main(void)
 				buff[i] = 0;
 		}
 		unused_console = 0, all_m = 0;
-		printf("ÇëÊäÈë´ı¼Ó¹¤Ô­ÁÏµÄÊıÁ¿(ºì¡¢À¶¡¢»Æ¡¢×Ï)\n");
+		printf("è¯·è¾“å…¥å¾…åŠ å·¥åŸæ–™çš„æ•°é‡(çº¢ã€è“ã€é»„ã€ç´«)\n");
 		scanf_s("%lf %lf %lf %lf", materials, materials + 3, materials + 7, materials + 8);
 		all_m = (int)(materials[0] + materials[3] + materials[7] + materials[8]);
 		materials[1] = materials[0] * 2 * 2 * 2.4;
 		materials[1] = ceil(materials[1]);
-		printf("ºì=%.1lf,À¶=%.1lf,»Æ=%.1lf,×Ï=%.1lf\n", materials[0], materials[3], materials[7], materials[8]);
-		printf("\nÇëÊäÈë¼Ó¹¤¹¤ÒÕ£º\n");
-		for (int i = 0; i < 6; i++)
+		printf("çº¢=%.1lf,è“=%.1lf,é»„=%.1lf,ç´«=%.1lf\n", materials[0], materials[3], materials[7], materials[8]);
+		printf("\nè¯·è¾“å…¥åŠ å·¥å·¥è‰ºï¼š\n");						//å·¥è‰ºå…¨è§£é”åï¼Œä»å·¦åˆ°å³æ•°ï¼Œç¬¬å››ä¸ªä¸ºç¬¬ä¸€ä¸ªåŠ å·¥å·¥è‰ºï¼Œä»¥æ­¤ç±»æ¨
+		for (int i = 0; i < 6; i++)						//å·¥è‰ºå‡ä¸ºMAX
 		{
-			printf("µÚ%d¸ö²Ù×÷Ì¨£º", i + 1);
+			printf("ç¬¬%dä¸ªæ“ä½œå°ï¼š", i + 1);
 			scanf_s("%d", a + i);
 
 		}
@@ -199,20 +197,20 @@ int main(void)
 		{
 			jiagong(a[j], p_unused_console, materials, buff, j);
 		}
-		printf("\n¼Ó¹¤ºó£¬ºì  ´ó=%8.1lf, À¶  =%5.1lf, »Æ=%8.1lf, ×Ï  =%8.1lf\n", materials[1], materials[3], materials[7], materials[8]);
-		printf("        ºìÌØ´ó=%8.1lf, À¶Ğ¡=%5.1lf,              ×ÏĞ¡=%8.1lf\n", materials[2], materials[4], materials[9]);
-		printf("                         À¶ÖĞ=%5.1lf,              ×ÏÖĞ=%8.1lf\n", materials[5], materials[10]);
-		printf("                         À¶´ó=%5.1lf,              ×Ï´ó=%8.1lf\n", materials[6], materials[11]);
+		printf("\nåŠ å·¥åï¼Œçº¢  å¤§=%8.1lf, è“  =%5.1lf, é»„=%8.1lf, ç´«  =%8.1lf\n", materials[1], materials[3], materials[7], materials[8]);
+		printf("        çº¢ç‰¹å¤§=%8.1lf, è“å°=%5.1lf,              ç´«å°=%8.1lf\n", materials[2], materials[4], materials[9]);
+		printf("                         è“ä¸­=%5.1lf,              ç´«ä¸­=%8.1lf\n", materials[5], materials[10]);
+		printf("                         è“å¤§=%5.1lf,              ç´«å¤§=%8.1lf\n", materials[6], materials[11]);
 
-		sc = sc + score(materials, buff, p_unused_console) - all_m;				//¿Û³ı³õÊ¼×ÜÊıÔ­ÁÏµÄ·ÖÊı
-		printf("µÚ%d´ÎÀÛ¼ÓµÄ·ÖÊıÎª:%d\n\n", times, sc);
-		printf("ÊÇ·ñĞèÒªÀÛ¼Ó±¾´Î·ÖÊı£¿(ÊäÈë1ÎªÊÇ£¬0ÔòÎª·ñ): ");
+		sc = sc + score(materials, buff, p_unused_console) - all_m;				//æ‰£é™¤åˆå§‹æ€»æ•°åŸæ–™çš„åˆ†æ•°
+		printf("ç¬¬%dæ¬¡ç´¯åŠ çš„åˆ†æ•°ä¸º:%d\n\n", times, sc);
+		printf("æ˜¯å¦éœ€è¦ç´¯åŠ æœ¬æ¬¡åˆ†æ•°ï¼Ÿ(è¾“å…¥1ä¸ºæ˜¯ï¼Œ0åˆ™ä¸ºå¦): ");
 		double answer = 0; int s = 0;
 		if (!scanf_s("%lf", &answer))
 		{
 		Answer_unint:
 			do {
-				printf("´íÎó,ÊäÈëÁË×Ö·û,ÇëÖØĞÂÊäÈë:");
+				printf("é”™è¯¯,è¾“å…¥äº†å­—ç¬¦,è¯·é‡æ–°è¾“å…¥:");
 				getchar();
 				s = scanf_s("%lf", &answer);
 			} while (!s);
@@ -220,20 +218,20 @@ int main(void)
 	Wrong_answer:
 		if (answer == 1)
 		{
-			printf("ÀÛ¼Ó£¬");
+			printf("ç´¯åŠ ï¼Œ");
 			times++;
 			continue;
 		}
 		else if (answer == 0)
 		{
-			printf("²»ÀÛ¼Ó£¬");
+			printf("ä¸ç´¯åŠ ï¼Œ");
 			sc = sc - score(materials, buff, p_unused_console) + all_m;
 			continue;
 		}
 		else
 		{
 			do {
-				printf("´íÎó,ÊäÈëÁË·Ç0-2µÄÕûÊı,ÇëÖØĞÂÊäÈë:");
+				printf("é”™è¯¯,è¾“å…¥äº†é0-2çš„æ•´æ•°,è¯·é‡æ–°è¾“å…¥:");
 				while (getchar() != '\n');
 				if (!scanf_s("%lf", &answer))
 					goto Answer_unint;
