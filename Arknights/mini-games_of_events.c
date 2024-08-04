@@ -202,7 +202,7 @@ int main(void)
 		printf("                         蓝中=%5.1lf,              紫中=%8.1lf\n", materials[5], materials[10]);
 		printf("                         蓝大=%5.1lf,              紫大=%8.1lf\n", materials[6], materials[11]);
 
-		sc = sc + score(materials, buff, p_unused_console) - all_m;				//扣除初始总数原料的分数
+		sc = sc + score(materials, buff, p_unused_console) - all_m;		//扣除初始总数原料的分数
 		printf("第%d次累加的分数为:%d\n\n", times, sc);
 		printf("是否需要累加本次分数？(输入1为是，0则为否): ");
 		double answer = 0; int s = 0;
@@ -231,7 +231,7 @@ int main(void)
 		else
 		{
 			do {
-				printf("错误,输入了非0-2的整数,请重新输入:");
+				printf("错误,输入了非0-1的整数,请重新输入:");
 				while (getchar() != '\n');
 				if (!scanf_s("%lf", &answer))
 					goto Answer_unint;
